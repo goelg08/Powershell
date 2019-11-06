@@ -1,0 +1,45 @@
+<target name="MutualFund" depends="Web">
+    <nant buildfile="cruise.build">
+      <properties>
+        <property name="mktw.system" value="MutualFund" />
+        <property name="mktw.relativedir" value="MarketWatch\MutualFund" />
+        <property name="mktw.framework" value="1.1" />
+        <property name="mktw.web" value="true" />
+      </properties>
+    </nant>
+  </target>
+
+Links to ccnet.config is
+
+<project name="MutualFund" description="MutualFund" queue="MainQueue" queuePriority="2">
+    <category>MarketWatch</category>
+    <artifactDirectory>D:\CCNet\Build\Artifacts\MarketWatch\MutualFund</artifactDirectory>
+    <workingDirectory>D:\CCNet\Build\Working\MarketWatch\MutualFund</workingDirectory>
+    <sourcecontrol type="multi">
+      <sourceControls>
+        <svn>
+          <executable>C:\Program Files\CollabNet\Subversion Client\svn.exe</executable>
+          <autoGetSource>true</autoGetSource>
+          <forceUpdate>true</forceUpdate>
+          <tagOnSuccess>true</tagOnSuccess>
+          <tagNameFormat>ver-BUILDER01NJA-{0}</tagNameFormat>
+          <tagCommitMessage>BUILDER01NJA CCNet Build {0}</tagCommitMessage>
+          <workingDirectory>D:\CCNet\Code\MarketWatch\MutualFund</workingDirectory>
+          <trunkUrl>svn+ssh://ofs@subversion.bxb.intdata.com/code/MarketWatch/MutualFund/trunk/</trunkUrl>
+          <tagBaseUrl>svn+ssh://ofs@subversion.bxb.intdata.com/code/MarketWatch/MutualFund/tags/</tagBaseUrl>
+        </svn>
+      </sourceControls>
+    </sourcecontrol>
+    <tasks>
+      <nant>
+        <executable>C:\Program Files\NAnt\bin\NAnt.exe</executable>
+        <buildFile>cruise.stable.build</buildFile>
+        <baseDirectory>D:\CCNet</baseDirectory>
+        <buildTimeoutSeconds>300000</buildTimeoutSeconds>
+        <targetList>
+          <target>MutualFund</target>
+        </targetList>
+      </nant>
+    </tasks>
+    <state type="state" directory="D:\CCNet\Build\State" />
+  </project>
